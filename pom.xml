@@ -44,7 +44,7 @@
 	<properties>
 		<jdk.version>1.6</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<sap.hcp.sdk.version>1.43.20.3</sap.hcp.sdk.version>
 	</properties>
 
@@ -62,21 +62,21 @@
 			<version>1.6.1</version>
 			<scope>provided</scope>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- SAP HANA Cloud Platform  -->
-        	<dependency>
-	        	<groupId>com.sap.cloud</groupId>
+
+		<!-- SAP HANA Cloud Platform -->
+		<dependency>
+			<groupId>com.sap.cloud</groupId>
 			<artifactId>neo-java-web-api</artifactId>
 			<version>${sap.hcp.sdk.version}</version>
-        	</dependency>
-			
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -91,6 +91,24 @@
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.sap.cloud</groupId>
+				<artifactId>neo-java-web-maven-plugin</artifactId>
+				<version>3.18.10</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>install-sdk</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- Location of the SAP HANA Cloud Platform SDK -->
+					<sdkInstallPath>${project.build.directory}/sdk</sdkInstallPath>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
